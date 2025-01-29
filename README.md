@@ -84,6 +84,12 @@ php artisan key:generate
 
 ### 9. Çalıştırma
 Projeyi çalıştırmak için aşağıdaki komutu kullanabilirsiniz:
+#### 1. Uygulamayı başlatmak için:
 ```bash
 php artisan serve
 ```
+#### 2. Kuyruğa alınan işleri işlemek için aşağıdaki komutu çalıştırın:
+```bash
+php artisan queue:work
+```
+Bu komutlar, Laravel uygulamanızı başlatacak ve kuyruğa alınan işleri işlemek için gerekli olan işleyiciyi başlatacaktır.

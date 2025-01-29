@@ -92,7 +92,7 @@ class TicketController extends Controller
         ]);
     }
 
-    // Bilet oluştur (örnek kod üretimi)
+    // Bilet oluştur
     public function create(Request $request)
     {
         if (Auth::user()->role !== 'admin') {
@@ -155,8 +155,8 @@ class TicketController extends Controller
         }
 
         // Etkinlik tarihi kontrolü
-        $eventStartDate = Carbon::parse($ticket->event->start_date); // Etkinlik başlangıç tarihi
-        $currentDate = Carbon::now(); // Şu anki tarih
+        $eventStartDate = Carbon::parse($ticket->event->start_date);
+        $currentDate = Carbon::now();
 
         if ($currentDate->diffInHours($eventStartDate, false) < 24) {
             return response()->json([
@@ -188,7 +188,6 @@ class TicketController extends Controller
         // Bilet tablosundan bilet ID'yi buluyoruz
         $ticket = Ticket::findOrFail($id);
 
-        // Eğer bilet rezervasyonla ilişkilendirilmişse rezervasyon bilgilerini alıyoruz
         $reservation = $ticket->reservation;
 
         if (!$reservation) {
@@ -199,8 +198,8 @@ class TicketController extends Controller
         }
 
         // expires_at'ı doğru şekilde formatlıyoruz
-        $expires_at = new \DateTime($reservation->expires_at); // Eğer expires_at bir tarih ise
-        $expires_at_formatted = $expires_at->format('Y-m-d H:i:s'); // Tarihi formatlıyoruz
+        $expires_at = new \DateTime($reservation->expires_at); 
+        $expires_at_formatted = $expires_at->format('Y-m-d H:i:s'); 
 
         // PDF içeriğini oluşturuyoruz
         $html = '

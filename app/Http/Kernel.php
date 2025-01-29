@@ -26,7 +26,7 @@ class Kernel extends HttpKernel
         }
 
         Log::info('Schedule run completed');
-    })->everyFifteenMinutes(); // Adjust frequency as needed
+    })->everyFifteenMinutes();
 }
     /**
      * The application's global HTTP middleware stack.

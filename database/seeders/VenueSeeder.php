@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Venue;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class VenueSeeder extends Seeder
@@ -37,7 +36,6 @@ class VenueSeeder extends Seeder
             ],
         ];
 
-        // Koltukları veritabanına ekliyoruz
         foreach ($venues as $venue) {
             Venue::create($venue);
         }

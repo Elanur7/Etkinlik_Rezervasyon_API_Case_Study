@@ -20,7 +20,7 @@ class SeatSeeder extends Seeder
                 'section' => 'A',
                 'row' => '1',
                 'number' => 1,
-                'status' => 'available',  // Koltuk durumu: available, reserved vs.
+                'status' => 'available',
                 'price' => 50.00
             ],
             [
@@ -39,7 +39,6 @@ class SeatSeeder extends Seeder
                 'status' => 'available',
                 'price' => 50.00
             ],
-            // Daha fazla koltuk ekleyebilirsiniz
         ];
 
         // Koltukları veritabanına ekliyoruz

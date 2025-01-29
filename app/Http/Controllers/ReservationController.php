@@ -38,7 +38,7 @@ class ReservationController extends Controller
                 'user_id' => auth('api')->id(),
                 'event_id' => $request->event_id,
                 'total_amount' => $request->total_amount,
-                'expires_at' => now()->addMinutes(1),
+                'expires_at' => now()->addMinutes(15),
                 'status' => 'confirmed',
             ]);
 
@@ -57,7 +57,7 @@ class ReservationController extends Controller
             }
 
             // Job'ı dispatch et
-            ExpireReservation::dispatch($reservation->id)->delay(now()->addMinutes(1));
+            ExpireReservation::dispatch($reservation->id)->delay(now()->addMinutes(15));
 
             DB::commit();
 
@@ -88,10 +88,10 @@ class ReservationController extends Controller
 
     public function show($id)
     {
-        // Kullanıcıya ait belirli bir rezervasyonu ve ilişkili verileri (user, event, items, seat) almak için
+        // Kullanıcıya ait belirli bir rezervasyonu alıyoruz
         $reservation = Reservation::with('items')
-            ->where('id', $id)          // Rezervasyon ID'sine göre filtreleme yapıyoruz
-            ->first();                  // İlk bulduğumuzu alıyoruz (id'siyle tek bir kayıt dönecek)
+            ->where('id', $id)      
+            ->first();                 
 
         // Eğer rezervasyon bulunamazsa hata döndürüyoruz
         if (!$reservation) {
@@ -103,7 +103,7 @@ class ReservationController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'reservation' => $reservation,  // Bulunan rezervasyonu döndürüyoruz
+            'reservation' => $reservation,
         ]);
     }
 
@@ -114,7 +114,6 @@ class ReservationController extends Controller
             ->where('user_id', auth('api')->id()) // Yalnızca oturum açan kullanıcının rezervasyonunu onaylayabilmesi için kontrol
             ->first();
 
-        // Eğer rezervasyon bulunamazsa veya kullanıcıya ait değilse, hata döndürüyoruz
         if (!$reservation) {
             return response()->json([
                 'status' => 'error',
@@ -132,7 +131,7 @@ class ReservationController extends Controller
 
         // Rezervasyonun durumunu 'confirmed' olarak güncelliyoruz
         $reservation->status = 'confirmed';
-        $reservation->save(); // Değişiklikleri kaydediyoruz
+        $reservation->save();
 
         return response()->json([
             'status' => 'success',
@@ -144,8 +143,8 @@ class ReservationController extends Controller
     {
         // Kullanıcıya ait olan belirli bir rezervasyonu buluyoruz
         $reservation = Reservation::where('id', $id)
-            ->where('user_id', auth('api')->id()) // Yalnızca oturum açan kullanıcının rezervasyonlarını silmelerini sağlıyoruz
-            ->first(); // İlk bulduğumuzu alıyoruz
+            ->where('user_id', auth('api')->id()) 
+            ->first();
 
         // Eğer rezervasyon bulunamazsa hata döndürüyoruz
         if (!$reservation) {

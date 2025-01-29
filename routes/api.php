@@ -30,9 +30,9 @@ Route::middleware(['auth:api'])->group(function () {
 });
 
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('/reservations', [ReservationController::class, 'index']);  // Tüm rezervasyonları listeleme
+    Route::get('/reservations', [ReservationController::class, 'index']);  
     Route::get('/reservations/{id}', [ReservationController::class, 'show']);
-    Route::post('/reservations', [ReservationController::class, 'store']);  // Rezervasyon yapma
+    Route::post('/reservations', [ReservationController::class, 'store']); 
     Route::post('/reservations/{id}/confirm', [ReservationController::class, 'confirm']);
     Route::delete('/reservations/{id}', [ReservationController::class, 'destroy']);
 });

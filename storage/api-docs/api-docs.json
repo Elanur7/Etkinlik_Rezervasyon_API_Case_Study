@@ -1,0 +1,132 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Event API",
+        "description": "API for managing events",
+        "contact": {
+            "email": "contact@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/events": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Get all events",
+                "operationId": "7058ab7c89d20c752b6afd6d808f6526",
+                "responses": {
+                    "200": {
+                        "description": "List of events",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "Event ID",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "Event name",
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "description": "Event description",
+                                                "type": "string"
+                                            },
+                                            "start_date": {
+                                                "description": "Event start date",
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "end_date": {
+                                                "description": "Event end date",
+                                                "type": "string",
+                                                "format": "date-time"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/events/{id}": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Get a single event by ID",
+                "operationId": "6f743f71f7a88dbe57be1d9c9ebf47cb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the event",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the event",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Event ID",
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "description": "Event name",
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "description": "Event description",
+                                            "type": "string"
+                                        },
+                                        "start_date": {
+                                            "description": "Event start date",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "end_date": {
+                                            "description": "Event end date",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Event not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Events",
+            "description": "Events"
+        }
+    ]
+}

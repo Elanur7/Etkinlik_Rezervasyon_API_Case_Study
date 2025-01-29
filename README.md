@@ -17,9 +17,9 @@ Projenin çalışabilmesi için aşağıdaki yazılımlar gereklidir:
 
 İlk olarak, projenin repository'sini klonlayın:
 
-```
+```bash
 git clone https://github.com/Elanur7/Etkinlik_Rezervasyon_API_Case_Study.git 
-cd proje-adi
+cd proje-adi```
 
 ### 2. Bağımlılıkları Yükleyin
 Composer ile PHP bağımlılıklarını yükleyin:

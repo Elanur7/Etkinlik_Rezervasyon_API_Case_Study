@@ -21,7 +21,7 @@ Projenin çalışabilmesi için aşağıdaki yazılımlar gereklidir:
 git clone https://github.com/Elanur7/Etkinlik_Rezervasyon_API_Case_Study.git
 ```
 ```bash
-cd proje-adi
+cd Etkinlik_Rezervasyon_API_Case_Study
 ```
 
 ### 2. Bağımlılıkları Yükleyin
